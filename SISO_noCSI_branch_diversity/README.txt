@@ -1,1 +1,2 @@
-Extending the SISO no CSI autoencoder to trade off code rate for more performance.
+- Extending the SISO no CSI autoencoder to trade off code rate for more performance.
+- Use the run_script.py to access and run the branch diveristy routine as you like. 
