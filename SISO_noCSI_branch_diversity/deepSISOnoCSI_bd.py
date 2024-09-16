@@ -59,7 +59,7 @@ def branch_diversity_routine(k, n, SNR_TRAIN, channelDist='rayleigh'):
     y_train = x_train 
 
     # Generate random channel filter samples for training
-    fade_mean = 0 
+    fade_mean = 0.5 
     fade_std = np.sqrt(0.5)
     if channelDist == 'rayleigh':
         fade_taps_I = np.random.normal(fade_mean, fade_std, (training_set_size, n)) 
@@ -84,8 +84,13 @@ def branch_diversity_routine(k, n, SNR_TRAIN, channelDist='rayleigh'):
         lambda_param = np.sqrt(2 / var_custom) 
         fade_taps_I = np.random.exponential(1 / lambda_param, (training_set_size, n)) -  np.random.exponential(1 / lambda_param, (training_set_size, n))
         fade_taps_Q = np.random.exponential(1 / lambda_param, (training_set_size, n)) -  np.random.exponential(1 / lambda_param, (training_set_size, n))
+    elif channelDist == 'foldedNormal':
+        mean_foldNorm = 0.65 
+        var_foldNorm = 1
+        fade_taps_I = np.abs(np.random.normal(mean_foldNorm, np.sqrt(var_foldNorm), (training_set_size, n)))
+        fade_taps_Q = np.abs(np.random.normal(mean_foldNorm, np.sqrt(var_foldNorm), (training_set_size, n))) 
     else:
-        raise ValueError('Invalid Channel Distribution. Available channel distributions are \n 1. Rayleigh\n 2. Gamma Distribution\n 3. Gumbel Distribution\n 4. Custom')
+        raise ValueError('Invalid Channel Distribution. Available channel distributions options are \n 1. rayleigh\n 2. gamma\n 3. gumbel\n 4. custom\n 5. foldedNormal')
         
 
     ##################################### End to End Autoencoder ###########################################
@@ -202,6 +207,11 @@ def branch_diversity_routine(k, n, SNR_TRAIN, channelDist='rayleigh'):
         lambda_param = np.sqrt(2 / var_custom) 
         fade_taps_I = np.random.exponential(1 / lambda_param, (testing_set_size, n)) -  np.random.exponential(1 / lambda_param, (testing_set_size, n))
         fade_taps_I = np.random.exponential(1 / lambda_param, (testing_set_size, n)) -  np.random.exponential(1 / lambda_param, (testing_set_size, n))
+    elif channelDist == 'foldedNormal':
+        mean_foldNorm = 0.65 
+        var_foldNorm = 1
+        fade_taps_I = np.abs(np.random.normal(mean_foldNorm, np.sqrt(var_foldNorm), (testing_set_size, n)))
+        fade_taps_Q = np.abs(np.random.normal(mean_foldNorm, np.sqrt(var_foldNorm), (testing_set_size, n))) 
 
     fade_taps = fade_taps_I + 1j * fade_taps_Q
     faded_signal = fade_taps * encoded_signal
