@@ -1,3 +1,13 @@
-Learning-Short-Codes-for-Fading-Channels-with-No-or-Receiver-Only-Channel-State-Information
+__Learning-Short-Codes-for-Fading-Channels-with-No-or-Receiver-Only-Channel-State-Information__
 
 - This repository contains the code base for the simulations and neural networks used to produce the results in the above research.
+- Here's the link to arXiv pre-print: [arXiv/2409.08581](https://arxiv.org/abs/2409.08581) 
+
+- If you directly want to head into the code, there are two main experiments 
+    1. SISO with No CSI: In this, no assumption of CSI has been made either at the transmitter or at the receiver. We learn an orthogonal signalling scheme. This is confirmed by the detailed breakdown analysis of the learned/ trained neural network.
+    We expand this neural network to other code rates and also explore other channel distributions to demonstrate the generality of the framework/ paradigm.
+
+    2.  SISO with CSIR: This experiment mainly demonstrates the inefficiency of:
+        a. Using AWGN codes for Fading channels.
+        b. Partial Augmentation of ML in conventional communication systems. (or rather intervened autoencoders.)
+        c. Gains in performance are possible and thus, techinques such as non-linear combining/ equalization of channel should be considered. 
