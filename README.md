@@ -1,5 +1,8 @@
 __Learning-Short-Codes-for-Fading-Channels-with-No-or-Receiver-Only-Channel-State-Information__
 
+- Authors:
+_Rishabh Sharad Pomaje_ and _Rajshekhar V. Bhat_
+
 - This repository contains the code base for the simulations and neural networks used to produce the results in the above research.
 - Here's the link to arXiv pre-print: [arXiv/2409.08581](https://arxiv.org/abs/2409.08581) 
 
